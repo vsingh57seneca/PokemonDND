@@ -1,0 +1,142 @@
+[
+    {
+        "name": "Reckless",
+        "stats": {
+            "str": 2,
+            "dex": -2
+        }
+    },
+    {
+        "name": "Rash",
+        "stats": {
+            "str": 2,
+            "con": -2
+        }
+    },
+    {
+        "name": "Brave",
+        "stats": {
+            "str": 2,
+            "wis": -2
+        }
+    },
+    {
+        "name": "Arrogant",
+        "stats": {
+            "str": 2,
+            "cha": -2
+        }
+    },
+    {
+        "name": "Skittish",
+        "stats": {
+            "dex": 2,
+            "str": -2
+        }
+    },
+    {
+        "name": "Hasty",
+        "stats": {
+            "dex": 2,
+            "con": -2
+        }
+    },
+    {
+        "name": "Energetic",
+        "stats": {
+            "dex": 2,
+            "cha": -2
+        }
+    },
+    {
+        "name": "Clumsy",
+        "stats": {
+            "dex": 2,
+            "wis": -2
+        }
+    },
+    {
+        "name": "Apathetic",
+        "stats": {
+            "con": 2,
+            "dex": -2
+        }
+    },
+    {
+        "name": "Stubborn",
+        "stats": {
+            "con": 2,
+            "wis": -2
+        }
+    },
+    {
+        "name": "Grumpy",
+        "stats": {
+            "con": 2,
+            "cha": -2
+        }
+    },
+    {
+        "name": "Relaxed",
+        "stats": {
+            "con": 2,
+            "str": -2
+        }
+    },
+    {
+        "name": "Careful",
+        "stats": {
+            "wis": 2,
+            "str": -2
+        }
+    },
+    {
+        "name": "Curious",
+        "stats": {
+            "wis": 2,
+            "con": -2
+        }
+    },
+    {
+        "name": "Naughty",
+        "stats": {
+            "wis": 2,
+            "cha": -2
+        }
+    },
+    {
+        "name": "Cheerful",
+        "stats": {
+            "cha": 2,
+            "str": -2
+        }
+    },
+    {
+        "name": "Sassy",
+        "stats": {
+            "cha": 2,
+            "dex": -2
+        }
+    },
+    {
+        "name": "Innocent",
+        "stats": {
+            "cha": 2,
+            "wis": -2
+        }
+    },
+    {
+        "name": "Hardy",
+        "stats": {
+            "armor_class": 1,
+            "dex": -2
+        }
+    },
+    {
+        "name": "Nimble",
+        "stats": {
+            "armor_class": 1,
+            "str": -2
+        }
+    }
+]

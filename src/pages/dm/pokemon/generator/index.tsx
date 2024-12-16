@@ -52,7 +52,7 @@ const index = () => {
     );
 
     if (wasGenerated) {
-      router.push("/dnd/pokemon");
+      router.push("/dm/pokemon");
     }
   };
 

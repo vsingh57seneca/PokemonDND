@@ -3,7 +3,10 @@ import { Pokemon } from "@/classes/Pokemon";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { convertToPokemonObjects, removePokemonFromSelectedCharacter } from "@/functions/PokemonHelperFunctions";
+import {
+  convertToPokemonObjects,
+  removePokemonFromSelectedCharacter,
+} from "@/functions/PokemonHelperFunctions";
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
 import { MdDeleteForever } from "react-icons/md";
 import { Character } from "@/classes/Character";
@@ -21,9 +24,12 @@ const index = () => {
       setSelectedCharacter(() => {
         const storedCharacter = localStorage.getItem("selected_character");
         // return storedCharacter ? JSON.parse(storedCharacter) : null;
-        if(storedCharacter) {
+        if (storedCharacter) {
           const parsedCharacter = JSON.parse(storedCharacter);
-          const rehydratedCharacter = new Character(parsedCharacter.name, parsedCharacter.pokemon.map((p:any) => new Pokemon(p)));
+          const rehydratedCharacter = new Character(
+            parsedCharacter.name,
+            parsedCharacter.pokemon.map((p: any) => new Pokemon(p))
+          );
           return rehydratedCharacter;
         }
       });
@@ -49,10 +55,10 @@ const index = () => {
 
   const onDeleteSelectedPokemon = (pokemonId: string) => {
     console.log("Removing Pokemon with ID:", pokemonId);
-  
+
     // Remove from localStorage
     removePokemonFromSelectedCharacter(pokemonId);
-  
+
     // Update selectedCharacter and rehydrate
     const updatedPokemonList = selectedCharacter?.pokemon.filter(
       (p) => p.id !== pokemonId
@@ -61,10 +67,10 @@ const index = () => {
       selectedCharacter?.name!,
       updatedPokemonList!
     );
-  
+
     // Update atom state
     setSelectedCharacter(updatedCharacter);
-  
+
     // Update selectedPokemon based on the updated list
     if (updatedPokemonList?.length) {
       setSelectedPokemon(updatedPokemonList[0]);
@@ -72,17 +78,21 @@ const index = () => {
       setSelectedPokemon(undefined);
     }
   };
-  
 
   useEffect(() => {
-    console.log(selectedPokemon)
-  }, [selectedPokemon])
+    console.log(selectedPokemon);
+  }, [selectedPokemon]);
 
   return (
     <>
       <div className="p-4 flex flex-col items-center gap-y-4 w-full">
-        <div className="flex flex-col items-center">
-          <h1 className="font-bold">Pokemon Character Sheet {"(DM)"}</h1>
+        <div className="flex flex-col items-center w-full">
+          <div className="grid grid-cols-3 w-full">
+          <h1 className="col-start-2 text-center">Pokemon Character Sheet {"(DM)"}</h1>
+          <h1 className="col-start-3 flex w-full justify-end">
+            <p className="px-4 py-2 bg-blue-500 w-fit cursor-pointer" onClick={() => router.push('/')}>Return to Character Select</p>
+          </h1>
+          </div>
           <p>Selected Character: {selectedCharacter?.name}</p>
           {/* <p>Available Pokemon: {selectedCharacter?.pokemon.length} </p> */}
         </div>
@@ -91,7 +101,7 @@ const index = () => {
           {/* Generate Pokemon Button */}
           <button
             className="bg-blue-500 p-3 rounded hover:bg-blue-700"
-            onClick={() => router.push("/dnd/pokemon/generator")}
+            onClick={() => router.push("/dm/pokemon/generator")}
           >
             Generate Pokemon
           </button>
@@ -113,13 +123,24 @@ const index = () => {
               ))}
             </select>
 
-            {selectedPokemon && <div className="text-3xl text-red-500 cursor-pointer" onClick={() => onDeleteSelectedPokemon(selectedPokemon?.id!)}><MdDeleteForever /></div>}
+            {selectedPokemon && (
+              <div
+                className="text-3xl text-red-500 cursor-pointer"
+                onClick={() => onDeleteSelectedPokemon(selectedPokemon?.id!)}
+              >
+                <MdDeleteForever />
+              </div>
+            )}
           </div>
         </div>
 
         {selectedPokemon && (
           <div className="w-full h-full">
-            <PokemonDisplay selectedPokemon={selectedPokemon} selectedCharacter={selectedCharacter!} setSelectedCharacter={setSelectedCharacter}/>
+            <PokemonDisplay
+              selectedPokemon={selectedPokemon}
+              selectedCharacter={selectedCharacter!}
+              setSelectedCharacter={setSelectedCharacter}
+            />
           </div>
         )}
       </div>

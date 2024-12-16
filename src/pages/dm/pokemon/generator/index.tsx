@@ -58,7 +58,19 @@ const index = () => {
 
   return (
     <div className="flex flex-col items-center p-4 gap-y-4">
-      <h1 className="font-bold">Pokemon Generator</h1>
+      <div className="grid grid-cols-3 w-full">
+        <h1 className="col-start-2 text-center">
+          Pokemon Generator
+        </h1>
+        <h1 className="col-start-3 flex w-full justify-end">
+          <p
+            className="px-4 py-2 bg-blue-500 w-fit cursor-pointer"
+            onClick={() => router.push("/dm/pokemon")}
+          >
+            Return to Pokemon Selector
+          </p>
+        </h1>
+      </div>
       <div className="w-full flex flex-col gap-y-4">
         <h1 className="mb-4">Select a Pokemon:</h1>
 
@@ -128,7 +140,7 @@ const index = () => {
                       setDesiredLevel(Number(e.target.value));
                     }
                   }}
-                  min={1}
+                  min={selectedPokemon.level}
                   max={20}
                   defaultValue={1}
                 />
@@ -204,7 +216,14 @@ const index = () => {
                 <div className=" flex flex-col gap-2">
                   <h1>Select an ability:</h1>
                   {selectedPokemon.abilities.map((ability: string) => (
-                    <p className={`px-2 py-1 border cursor-pointer rounded ${selectedAbility === ability && `bg-gray-200 text-black`}`} onClick={() => setSelectedAbility(ability)}>{ability}</p>
+                    <p
+                      className={`px-2 py-1 border cursor-pointer rounded ${
+                        selectedAbility === ability && `bg-gray-200 text-black`
+                      }`}
+                      onClick={() => setSelectedAbility(ability)}
+                    >
+                      {ability}
+                    </p>
                   ))}
                 </div>
                 {/* Generate Button */}

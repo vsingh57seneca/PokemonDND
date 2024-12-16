@@ -14,7 +14,7 @@ export default function Home() {
   }, [])
 
   const handleContinue = () => {
-    router.push('/dnd/pokemon');
+    router.push('/dm/pokemon');
   }
 
   return (

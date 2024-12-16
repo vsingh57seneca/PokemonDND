@@ -1,6 +1,10 @@
 import { pokemonListAtom, selectedCharacterAtom } from "@/atoms/atoms";
 import { Pokemon } from "@/classes/Pokemon";
-import { addPokemonToSelectedCharacter, convertToPokemonObjects, generatePokemon } from "@/functions/PokemonHelperFunctions";
+import {
+  addPokemonToSelectedCharacter,
+  convertToPokemonObjects,
+  generatePokemon,
+} from "@/functions/PokemonHelperFunctions";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -18,6 +22,7 @@ const index = () => {
   const [givenName, setGivenName] = useState<string>("");
   const [desiredLevel, setDesiredLevel] = useState<number>(1);
   const [selectedMoves, setSelectedMoves] = useState<string[]>([]);
+  const [selectedAbility, setSelectedAbility] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,15 +40,21 @@ const index = () => {
 
   useEffect(() => {
     setDesiredLevel(Number(selectedPokemon?.level));
-  }, [selectedPokemon])
+  }, [selectedPokemon]);
 
   const onGeneratePokemon = async () => {
-    const wasGenerated = generatePokemon(selectedPokemon!, givenName, desiredLevel, selectedMoves);
+    const wasGenerated = generatePokemon(
+      selectedPokemon!,
+      givenName,
+      desiredLevel,
+      selectedMoves,
+      selectedAbility
+    );
 
-    if(wasGenerated) {
-        router.push("/dnd/pokemon");
+    if (wasGenerated) {
+      router.push("/dnd/pokemon");
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-center p-4 gap-y-4">
@@ -118,6 +129,7 @@ const index = () => {
                     }
                   }}
                   min={1}
+                  max={20}
                   defaultValue={1}
                 />
 
@@ -131,7 +143,8 @@ const index = () => {
                         .filter(
                           ([key, _]) =>
                             key === "starting_moves" ||
-                            Number(key) <= desiredLevel
+                            Number(key) <= desiredLevel ||
+                            key === "egg_moves"
                         )
                         .map(([key, value]) => (
                           <>
@@ -164,7 +177,7 @@ const index = () => {
                   {/* Selected Moves */}
                   {selectedMoves && (
                     <div className="flex flex-col gap-y-2">
-                      <h1>Slected Moves</h1>
+                      <h1>Selected Moves</h1>
                       <div className="min-h-32 min-w-36 border overflow-y-auto p-4">
                         {selectedMoves.map((move) => (
                           <p
@@ -187,8 +200,18 @@ const index = () => {
                     </div>
                   )}
                 </div>
+                {/* Selected Ability */}
+                <div className=" flex flex-col gap-2">
+                  <h1>Select an ability:</h1>
+                  {selectedPokemon.abilities.map((ability: string) => (
+                    <p className={`px-2 py-1 border cursor-pointer rounded ${selectedAbility === ability && `bg-gray-200 text-black`}`} onClick={() => setSelectedAbility(ability)}>{ability}</p>
+                  ))}
+                </div>
                 {/* Generate Button */}
-                <button className="bg-green-500 p-3 rounded" onClick={onGeneratePokemon}>
+                <button
+                  className="bg-green-500 p-3 rounded"
+                  onClick={onGeneratePokemon}
+                >
                   Generate {givenName ? givenName : selectedPokemon.name}
                 </button>
               </div>

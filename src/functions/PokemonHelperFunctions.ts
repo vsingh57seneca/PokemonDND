@@ -42,7 +42,8 @@ export const generatePokemon = (
   selectedPokemon: Pokemon,
   givenName: string,
   desiredLevel: number,
-  selectedMoves: string[]
+  selectedMoves: string[],
+  selectedAbility: string
 ): boolean => {
   try {
     const newPokemon = new Pokemon(selectedPokemon);
@@ -52,8 +53,9 @@ export const generatePokemon = (
     newPokemon.selected_moves = selectedMoves;
     newPokemon.hit_points = selectedPokemon.calculateHP(desiredLevel);
     newPokemon.current_hit_points = selectedPokemon.calculateHP(desiredLevel);
-    newPokemon.stab = desiredLevel < 3 ? 0 : desiredLevel < 7 ? 1 : desiredLevel < 11 ? 2 : desiredLevel < 15 ? 3 : desiredLevel < 19 ? 4 : 5
-    newPokemon.proficiency_bonus = desiredLevel < 3 ? 2 : desiredLevel < 9 ? 3 : desiredLevel < 13 ? 4 : desiredLevel < 17 ? 5 : 6
+    newPokemon.stab = desiredLevel < 3 ? 0 : desiredLevel < 7 ? 1 : desiredLevel < 11 ? 2 : desiredLevel < 15 ? 3 : desiredLevel < 19 ? 4 : 5;
+    newPokemon.proficiency_bonus = desiredLevel < 3 ? 2 : desiredLevel < 9 ? 3 : desiredLevel < 13 ? 4 : desiredLevel < 17 ? 5 : 6;
+    newPokemon.selected_ability = selectedAbility;
     if (newPokemon) {
       addPokemonToSelectedCharacter(newPokemon);
       return true; // Explicit success return

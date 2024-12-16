@@ -28,6 +28,7 @@ export class Pokemon {
     selected_moves? :string[];
     stab?: number;
     proficiency_bonus?: number;
+    selected_ability?: string;
   
     constructor(pokemon: any) {
       this.name = pokemon.name;
@@ -59,6 +60,7 @@ export class Pokemon {
       this.selected_moves = pokemon.selected_moves;
       this.stab = pokemon.stab;
       this.proficiency_bonus = pokemon.proficiency_bonus;
+      this.selected_ability = pokemon.selected_ability;
     }
 
     calculateHP(selected_level: number): number {

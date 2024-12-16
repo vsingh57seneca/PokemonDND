@@ -11,51 +11,64 @@ interface PokemonDisplayProps {
   setSelectedCharacter: (selectedCharacter: Character) => void;
 }
 
-const PokemonDisplay: React.FC<PokemonDisplayProps> = ({ selectedPokemon, selectedCharacter, setSelectedCharacter }) => {
+const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
+  selectedPokemon,
+  selectedCharacter,
+  setSelectedCharacter,
+}) => {
   const [showMoveDrawer, setShowMoveDrawer] = useState(false);
   const [movesList, setMovesList] = useState([]);
   const [targetedMove, setTargetedMove] = useState<any>();
 
-
   useEffect(() => {
     const fetchMoves = async () => {
       setMovesList(await fetchAllMoves());
-    }
+    };
 
     fetchMoves();
-  }, [])
+  }, []);
 
   const handleMouseEnterMove = (move: string) => {
     setShowMoveDrawer(true);
 
-    const foundMove = movesList.find((m: any) => m.name.toLowerCase() === move.toLowerCase());
-    
-    if(foundMove) {
+    const foundMove = movesList.find(
+      (m: any) => m.name.toLowerCase() === move.toLowerCase()
+    );
+
+    if (foundMove) {
       setTargetedMove(foundMove);
     }
-  }
+  };
 
   const handleMouseLeaveMove = () => {
     setShowMoveDrawer(false);
     setTargetedMove(null);
-  }
+  };
 
   useEffect(() => {
     console.log(targetedMove);
-  }, [targetedMove])
-  
+  }, [targetedMove]);
+
   return (
     <div>
       {/* HP Bar */}
       <div className="">
-        <PokemonHBBar selectedPokemon={selectedPokemon} selectedCharacter={selectedCharacter} setSelectedCharacter={setSelectedCharacter} />
+        <PokemonHBBar
+          selectedPokemon={selectedPokemon}
+          selectedCharacter={selectedCharacter}
+          setSelectedCharacter={setSelectedCharacter}
+        />
       </div>
       <div className="grid grid-cols-4 p-4 h-full w-full gap-2">
         {/* Left */}
         <div className="col-span-1 flex flex-col gap-y-4 items-end">
           <h1>Moves:</h1>
           {selectedPokemon.selected_moves?.map((move) => (
-            <p className={`rounded bg-blue-500 px-2 py-1 cursor-pointer w-fit text-center hover:bg-blue-700`} onMouseEnter={() => handleMouseEnterMove(move)} onMouseLeave={handleMouseLeaveMove}>
+            <p
+              className={`rounded bg-blue-500 px-2 py-1 cursor-pointer w-fit text-center hover:bg-blue-700`}
+              onMouseEnter={() => handleMouseEnterMove(move)}
+              onMouseLeave={handleMouseLeaveMove}
+            >
               {move}
             </p>
           ))}
@@ -196,9 +209,10 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({ selectedPokemon, select
         <div className="col-span-4 flex w-full">
           <p className="font-bold">
             Ability:{" "}
-            {selectedPokemon.abilities.map((ability) => (
+            {/* {selectedPokemon.abilities.map((ability) => (
               <p className="font-normal">{ability}</p>
-            ))}
+            ))} */}
+            <p className="font-normal">{selectedPokemon.selected_ability}</p>
           </p>
         </div>
 
@@ -226,8 +240,10 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({ selectedPokemon, select
             <p>Duration: {targetedMove.duration}</p>
             <p>PP: {`${targetedMove.current_pp}/${targetedMove.pp}`}</p>
             <p>Description: {targetedMove.description}</p>
-            {targetedMove.higher_levels && <p>Higher Levels: {targetedMove.higher_levels}</p>}
-            
+            {targetedMove.higher_levels && (
+              <p>Higher Levels: {targetedMove.higher_levels}</p>
+            )}
+
             {/* Add additional move details here */}
           </div>
         ) : (

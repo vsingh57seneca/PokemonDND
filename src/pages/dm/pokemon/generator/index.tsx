@@ -134,15 +134,12 @@ const index = () => {
                   className="px-2 border rounded text-black"
                   value={desiredLevel}
                   onChange={(e) => {
-                    if (Number(e.target.value) <= 0) {
-                      setDesiredLevel(1);
-                    } else {
+                    if (Number(e.target.value) >= selectedPokemon.level && Number(e.target.value) <=20) {
                       setDesiredLevel(Number(e.target.value));
-                    }
+                    } 
                   }}
                   min={selectedPokemon.level}
                   max={20}
-                  defaultValue={1}
                 />
 
                 {/* Moves */}

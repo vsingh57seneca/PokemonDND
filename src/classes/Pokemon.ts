@@ -66,15 +66,16 @@ export class Pokemon {
     calculateHP(selected_level: number): number {
       let dice = parseInt(this.hit_dice.replace("d", "").trim()) / 2 + 1;
       let base_level = selected_level - this.level;
-      console.log((dice * base_level) + this.hit_points)
       return (dice * base_level) + this.hit_points;
     }
 
-    updateHP(hp: string) {
+    updateHP(hp: string): boolean {
       if(Number(hp) <= this.hit_points && Number(hp) >= 0) {
         this.current_hit_points = Number(hp);
+        return true;
       }
-    }
 
+      return false;
+    }
   }
   

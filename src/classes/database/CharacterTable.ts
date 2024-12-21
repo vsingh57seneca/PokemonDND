@@ -73,8 +73,32 @@ export class CharacterTable implements ITable<Character>, ICrud<Character> {
     return true;
   }
 
-  delete(id: string): boolean {
-    throw new Error("Method not implemented.");
+  delete(characterId: string): CharacterTable | undefined {
+    const initialLength = this.records.length;
+    const updatedCharactersRecords = this.records.filter((record) => record.id !== characterId);
+    this.records = updatedCharactersRecords;
+
+    if(this.records.length < initialLength) {
+      this.saveTableToStorage();
+       return this;
+    }
+
+    return undefined;
+  }
+
+  deletePokemon(characterId: string, pokemonId: string): Character | undefined {
+    const characterIndex = this.records.findIndex((record) => record.id === characterId);
+
+    if(characterIndex !== -1) {
+      const updatedOwnedPokemon = this.records[characterIndex].ownedPokemon.filter((pokemon) => pokemon.id !== pokemonId);
+      this.records[characterIndex].ownedPokemon = updatedOwnedPokemon;
+
+      this.saveTableToStorage();
+
+      return this.records[characterIndex];
+    }
+
+    return undefined
   }
 
   loadTableFromStoage(): Character[] {
@@ -108,5 +132,15 @@ export class CharacterTable implements ITable<Character>, ICrud<Character> {
 
   getExistingRecords(): Character[] {
     return this.records;
+  }
+
+  getExistingCharacter(id: string) : Character | undefined {
+    const character = this.records.find((char) => char.id === id);
+
+    if(character) {
+      return character;
+    }
+
+    return undefined;
   }
 }

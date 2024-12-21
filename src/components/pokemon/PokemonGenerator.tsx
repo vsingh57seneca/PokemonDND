@@ -64,9 +64,9 @@ const PokemonGenerator = () => {
         characterTable?.update(selectedCharacter?.id as string, {
           ownedPokemon: selectedCharacter?.ownedPokemon,
         });
-
-        setSelectedCharacter(new Character(selectedCharacter?.name as string, selectedCharacter?.ownedPokemon));
       }
+
+      setSelectedCharacter(characterTable?.getExistingCharacter(selectedCharacter?.id as string));
     }
     setShowAddPokemonModal(false);
     setSelectedPokemon(undefined);

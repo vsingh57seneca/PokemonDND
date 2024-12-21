@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { useRouter } from "next/router";
 import { CharacterTable } from "@/classes/database/CharacterTable";
+import toast from "react-hot-toast";
 
 const PokemonSelector = () => {
   const router = useRouter();
@@ -24,8 +25,15 @@ const PokemonSelector = () => {
     }
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (pokemonId: string) => {
+    const updatedCharacter = characterTable?.deletePokemon(selectedCharacter?.id as string, pokemonId);
 
+    if(updatedCharacter) {
+      console.log(updatedCharacter);
+      setSelectedCharacter(updatedCharacter);
+      setSelectedPokemon(undefined);
+      toast.success("Pokemon deleted successfully");
+    }
   };
   useEffect(() => {
 

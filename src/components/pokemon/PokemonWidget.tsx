@@ -15,7 +15,7 @@ const PokemonWidget = () => {
                 Level: {selectedPokemon.current_level}
               </p>
               <div className="relative">
-                <img src={selectedPokemon.image} />
+                <img src={selectedPokemon.image}width={70}/>
                 {(selectedPokemon.current_hit_points as number) <= 0 && (
                   <div className="absolute top-[30%] left-[30%]">
                     <p className="text-5xl text-red-500">X</p>

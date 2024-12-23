@@ -18,7 +18,9 @@ const PokemonDetails = () => {
     };
 
     fetchMoves();
-  }, []);
+
+    console.log(selectedPokemon);
+  }, [selectedPokemon]);
 
   useEffect(() => {
     const details = moveList?.find((move: any) => move.name === selectedMove);
@@ -112,7 +114,7 @@ const PokemonDetails = () => {
               </button>
             </div>
           )}
-          {selectedPokemon.hidden_ability && (
+          {selectedPokemon.hidden_ability.length > 0 && (
             <div className="flex justify-center">
               <button
                 className="px-4 py-1 w-full md:w-1/2 rounded bg-orange-500 font-semibold hover:bg-orange-600"

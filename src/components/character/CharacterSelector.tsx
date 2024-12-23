@@ -97,7 +97,7 @@ const CharacterSelector = () => {
       </div>
       <button
         className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded"
-        onClick={() => router.push(`/pokemonDND/dm/${selectedCharacter?.name}`)}
+        onClick={() => router.push(`/dm/${selectedCharacter?.name}`)}
       >
         Continue
       </button>

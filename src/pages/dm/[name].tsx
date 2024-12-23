@@ -38,7 +38,7 @@ const CharacterPage = () => {
   }, [name, characterTable, setSelectedCharacter]);
 
   return (
-    <div className="p-4 w-full gap-y-4 flex flex-col h-[93%]">
+    <div className="p-4 w-full gap-y-4 flex flex-col h-full">
       <div className="flex w-full justify-between items-center">
         <h1 className="text-3xl">{selectedCharacter?.name}</h1>
         <button

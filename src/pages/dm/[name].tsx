@@ -32,7 +32,7 @@ const CharacterPage = () => {
         setSelectedCharacter(character);
       } else {
         console.warn(`Character with name "${name}" not found.`);
-        router.push("/");
+        // router.push("/");
       }
     }
   }, [name, characterTable, setSelectedCharacter]);

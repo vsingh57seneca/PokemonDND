@@ -1,15 +1,38 @@
-
-import React, { useEffect,} from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import CharacterGenerator from "@/components/character/CharacterGenerator";
 import CharacterSelector from "@/components/character/CharacterSelector";
+import Hero from "@/components/Hero";
+import HomeAbout from "@/components/HomeAbout";
+import Image from "next/image";
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="w-full h-full flex flex-col gap-y-4 p-4 items-center justify-center">
-      <CharacterGenerator />
-      <CharacterSelector />
+    <div className="bg-neutral-900 h-full">
+      <div className="gap-4 p-6 items-center justify-center flex lg:w-2/3 mx-auto">
+        {/* <CharacterGenerator />
+      <CharacterSelector /> */}
+        <div className="lg:flex">
+        <Hero
+          height="h-[70vh]"
+          title="Catch, Customize, Conquer!"
+          sub_title="Bring Pokémon into your DND 5e world with instant character sheets and smart Pokémon picks — made just for Dungeon Masters like you."
+          actionButton={
+            <button
+              className="border-2 border-blue-500 bg-yellow-500 text-xl text-blue-700 font-bold px-3 py-2 hover:bg-yellow-500 hover:text-blue-400 transition ease-in-out duration-300"
+              onClick={() => router.push("/app")}
+            >
+              Start Your Adventure
+            </button>
+          }
+        />
+        </div>
+        <Image priority className="hidden lg:block select-none" src={'/pokemon-splash.png'} width={1050} height={250} alt="Pokemon" />
+      </div>
+      <div className="scroll-smooth">
+        <HomeAbout />
+      </div>
     </div>
   );
 }

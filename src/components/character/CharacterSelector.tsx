@@ -54,20 +54,6 @@ const CharacterSelector = () => {
   return (
     <>
       <div className="flex items-center gap-x-2">
-        {/* <select
-          className="text-black px-4 py-2"
-          value={selectedCharacter?.id || ""}
-          onChange={handleCharacterChange}
-        >
-          <option value="" disabled>
-            Select a Character
-          </option>
-          {characterTable?.getExistingRecords().map((record) => (
-            <option key={record.id} value={record.id}>
-              {record.name}
-            </option>
-          ))}
-        </select> */}
         {characterTable?.getNumberOfRecords() === 0 ? (
           <p className="text-gray-500">
             No characters available. Create one!
@@ -96,7 +82,8 @@ const CharacterSelector = () => {
         )}
       </div>
       <button
-        className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded"
+        disabled={selectedCharacter ? false : true}
+        className={`mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded ${!selectedCharacter && 'bg-gray-500 cursor-not-allowed'}`}
         onClick={() => router.push(`/dm/${selectedCharacter?.name}`)}
       >
         Continue

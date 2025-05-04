@@ -2,8 +2,8 @@ import AboutCard from "./AboutCard";
 
 export default function HomeAbout() {
   return (
-    <div className="bg-neutral-900">
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:w-3/4 mx-auto p-6 gap-6">
+    <div className="bg-neutral-200">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:mx-24 p-6 gap-6">
         <AboutCard
           title="Save Time"
           description="Instantly generate character sheets and reduce prep time by 99%.

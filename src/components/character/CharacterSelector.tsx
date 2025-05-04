@@ -83,7 +83,7 @@ const CharacterSelector = () => {
       </div>
       <button
         disabled={selectedCharacter ? false : true}
-        className={`mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded ${!selectedCharacter && 'bg-gray-500 cursor-not-allowed'}`}
+        className={`mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded ${!selectedCharacter && 'bg-gray-500 cursor-not-allowed hidden'}`}
         onClick={() => router.push(`/dm/${selectedCharacter?.name}`)}
       >
         Continue

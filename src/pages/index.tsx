@@ -5,17 +5,18 @@ import CharacterSelector from "@/components/character/CharacterSelector";
 import Hero from "@/components/Hero";
 import HomeAbout from "@/components/HomeAbout";
 import Image from "next/image";
+
 export default function Home() {
   const router = useRouter();
 
   return (
     <div className="bg-neutral-900 h-full">
-      <div className="gap-4 p-6 items-center justify-center flex lg:w-2/3 mx-auto">
+      <div className="gap-4 p-6 items-center justify-center flex lg:mx-24">
         {/* <CharacterGenerator />
       <CharacterSelector /> */}
         <div className="lg:flex">
         <Hero
-          height="h-[70vh]"
+          height="h-[80dvh]"
           title="Catch, Customize, Conquer!"
           sub_title="Bring Pokémon into your DND 5e world with instant character sheets and smart Pokémon picks — made just for Dungeon Masters like you."
           actionButton={
@@ -28,7 +29,7 @@ export default function Home() {
           }
         />
         </div>
-        <Image priority className="hidden lg:block select-none" src={'/pokemon-splash.png'} width={1050} height={250} alt="Pokemon" />
+        <Image priority className="hidden lg:block select-none" src={'/pokemon-splash.png'} width={850} height={0} alt="Pokemon" />
       </div>
       <div className="scroll-smooth">
         <HomeAbout />

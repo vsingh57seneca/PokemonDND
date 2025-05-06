@@ -32,7 +32,7 @@ const CharacterPage = () => {
         setSelectedCharacter(character);
       } else {
         console.warn(`Character with name "${name}" not found.`);
-        // router.push("/");
+        router.push("/app");
       }
     }
   }, [name, characterTable, setSelectedCharacter]);
@@ -43,18 +43,18 @@ const CharacterPage = () => {
         <h1 className="text-3xl">{selectedCharacter?.name}</h1>
         <button
           className="px-4 py-2 bg-purple-500 hover:bg-blue-600 rounded font-semibold"
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/app")}
         >
           Characters
         </button>
       </div>
-      <div className="flex flex-col md:flex-row h-full">
-        <div className="p-2 border-b md:border-r md:border-b-0 flex flex-col items-center gap-y-2">
+      <div className="flex flex-col md:flex-row h-full space-y-6">
+        <div className="border-b md:border-r md:border-b-0 flex flex-col items-center gap-y-2">
           <PokemonGenerator />
           <PokemonSelector />
           <PokemonWidget />
         </div>
-        <div className="p-2 flex-grow w-full overflow-y-auto"><PokemonDetails /></div>
+        <div className="flex-grow w-full overflow-y-auto"><PokemonDetails /></div>
       </div>
     </div>
   );

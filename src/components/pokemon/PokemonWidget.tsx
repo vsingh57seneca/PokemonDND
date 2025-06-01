@@ -27,8 +27,6 @@ const PokemonWidget = () => {
     };
 
     fetchMoves();
-
-    console.log(selectedPokemon);
   }, [selectedPokemon]);
 
   return (

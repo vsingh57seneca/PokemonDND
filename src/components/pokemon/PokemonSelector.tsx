@@ -51,7 +51,7 @@ const PokemonSelector = () => {
           <option>Select a Pokemon</option>
           {selectedCharacter?.ownedPokemon.map((p) => (
             <option key={p.id} value={p.id}>
-              <p>{`${p.name} ${p.given_name && `(${p.given_name})`}`}</p>
+              {`${p.name} ${p.given_name && `(${p.given_name})`}`}
             </option>
           ))}
         </select>

@@ -24,18 +24,22 @@ const CharacterPage = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // Only proceed if the query parameter and characterTable are defined
-    if (name && characterTable) {
-      const character = characterTable.readByName(name as string) as Character;
-      if (character) {
-        setSelectedCharacter(character);
-      } else {
-        console.warn(`Character with name "${name}" not found.`);
-        router.push("/app");
-      }
-    }
-  }, [name, characterTable, setSelectedCharacter]);
+useEffect(() => {
+  if (!name || !characterTable) {
+    // Wait for both to be defined
+    return;
+  }
+
+  const character = characterTable.readByName(name as string) as Character;
+
+  if (character) {
+    setSelectedCharacter(character);
+  } else {
+    console.warn(`Character with name "${name}" not found.`);
+    router.push("/app");
+  }
+}, [name, characterTable, setSelectedCharacter]);
+
 
   return (
     <div className="p-4 w-full gap-y-4 flex flex-col h-full">

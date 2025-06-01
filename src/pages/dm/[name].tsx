@@ -36,7 +36,7 @@ useEffect(() => {
     setSelectedCharacter(character);
   } else {
     console.warn(`Character with name "${name}" not found.`);
-    router.push("/app");
+    // router.push("/app");
   }
 }, [name, characterTable, setSelectedCharacter]);
 
